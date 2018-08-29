@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+    <div class="container">
+
+        <h1>Info Contract</h1>
+
+        <h2 id="info"></h2>
+
+        <label for="name" class="col-lg-2 control-label">Name</label>
+        <input id="name" type="text">
+
+        <label for="name" class="col-lg-2 control-label">Age</label>
+        <input id="age" type="text">
+
+        <button id="button">Update Info</button>
+
+
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script src="./node_modules/truffle-contract/dist/truffle-contract.min.js"></script>
+
+    <script src="./app.js"></script>
+
+    <script>
+        $("#button").click(function() {
+            // App.contracts.Info.setInfo($("#name").val(), $("#age").val());
+            App.contracts.Info.deployed().then(function(instance) {
+                infoInstance = instance;
+                alert(instance)
+                alert($("#name").val())
+                return infoInstance.setInfo($("#name").val(), $("#age").val());
+            }).then(function(result) {
+                alert('Successfully')
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        });
+    </script>
+
+</body>
+</html>
