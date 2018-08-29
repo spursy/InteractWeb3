@@ -38,11 +38,13 @@
             // App.contracts.Info.setInfo($("#name").val(), $("#age").val());
             App.contracts.Info.deployed().then(function(instance) {
                 infoInstance = instance;
-                alert(instance)
-                alert($("#name").val())
-                return infoInstance.setInfo($("#name").val(), $("#age").val());
-            }).then(function(result) {
-                alert('Successfully')
+                infoInstance.setInfo($("#name").val(), $("#age").val());
+                return infoInstance;
+            }).then(function(infoInstance) {
+                let instructorEvent = infoInstance.Instructor();
+                instructorEvent.watch(function(error, result) {
+                    alert('Successfully')
+                });
             }).catch(function(err) {
                 console.log(err.message);
             });

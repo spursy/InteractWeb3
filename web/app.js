@@ -18,7 +18,6 @@ App = {
           var InfoArtifact = data;
           App.contracts.Info = TruffleContract(InfoArtifact);
           // Set the provider for our contract
-          
           App.contracts.Info.setProvider(App.web3Provider);
         });
       },
